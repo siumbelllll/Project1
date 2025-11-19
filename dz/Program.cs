@@ -63,7 +63,7 @@ namespace dz
                 if (numbers[i] > second && numbers[i] < max)
                 {
                     second = numbers[i];
-                }
+                } 
             }
             //Вывод результатов
             Console.WriteLine();
