@@ -11,25 +11,76 @@ namespace _7pr1._2
     {
         static void Main(string[] args)
         {
-            string[] words = new string[] { "паоалпр", "прао", "ппо", "ааплаа", "р" };
+            string[] words = new string[] { "книга", "карандаш", "ручка", "стол", "ластик" };
             Console.WriteLine("Массив: ");
             for (int i = 0; i < words.Length; i++)
             {
-                Console.WriteLine(words[i] + " ");
+                Console.Write(words[i] + " ");
             }
-            int longLine = 0;
+            //1
+            string longword = words[0];
             for (int i = 1; i < words.Length; i++)
             {
-                if (words[i].Length > longLine)
+                if (words[i].Length > longword.Length)
                 {
-                    longLine = words[i].Length;
+                    longword = words[i];
                 } 
              }
-           Console.WriteLine(longLine);
+            Console.WriteLine($"Самое длинное слово: {longword}.");
+            //2
+            Console.Write("Введите подстроку для поиска: ");
+            string a = Console.ReadLine();
+            Console.WriteLine("Все строки, содержащие заданную подстроку: ");
+            bool answer = false;
+            for (int i = 0; i < words.Length; i++)
+            {
+                if (words[i].Contains(a))
+                {
+                    Console.WriteLine(words[i]);
+                    answer = true;
+                }
+            }
+            if (answer == false)
+            {
+                Console.WriteLine("Строки с такой подстрокой не найдены");
+            }
+            //3
+            Console.Write("Введите слово для поиска индекса: ");
+            string index = Console.ReadLine();
 
+            int num = -1;
+            for (int i = 0; i < words.Length; i++)
+            {
 
-           
-           
+                if (words[i].Length == index.Length)
+                {
+                    bool answ = true;
+                    for (int n = 0; n < words[i].Length; n++)
+                    {
+                        if (words[i][n] != index[n])
+                        {
+                            answ = false;
+                            break;
+                        }
+                    }
+
+                    if (answ)
+                    {
+                        num = i;
+                        break;
+                    }
+                }
+            }
+
+            if (num >= 0)
+            {
+                Console.WriteLine("Индекс этого слова: " + num);
+            }
+            else
+            {
+                Console.WriteLine("Строка не найдена");
+            }
+
         }
     }
 }

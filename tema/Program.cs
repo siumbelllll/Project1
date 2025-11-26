@@ -35,7 +35,29 @@ namespace tema
             {
                 Console.WriteLine($"  - {yr.Split('-')[0]} {yr.Split('-')[2]}");
             }
+            //вывод кииг после 2015
+            Console.WriteLine("Топ три книги");
+            var top3 = books.OrderByDescending(b => Convert.ToDouble(b.Split('-')[3])).Take(3);
+            foreach (var y3 in top3)
+            {
+                Console.WriteLine($" -{y3.Split('-')[0]} {y3.Split('-')[3]}");
+            }
+            //начинается на В
+            Console.WriteLine("Книги, начинающиеся на В");
+            var startWithV = books.Where(b => b.StartsWith("В"));
+            foreach (var book in startWithV)
+            {
+                Console.WriteLine(book);
+            }
+            //самая старая и самая новая книга
+            var oldestBook = books.OrderBy(b => Convert.ToInt32(b.Split('-')[2])).First();
+            var newestBook = books.OrderByDescending(b => Convert.ToInt32(b.Split('-')[2])).First();
+            Console.WriteLine($"Самая старая книга: {oldestBook.Split('-')[0]} {oldestBook.Split('-')[2]} г.");
+            Console.WriteLine($"Самая новая книга: {newestBook.Split('-')[0]} {newestBook.Split('-')[2]} г.");
+            //средний рейтинг
+            var average = books.Average(b => Convert.ToDouble(b.Split('-')[3]));
+            Console.WriteLine($"Средний рейтинг книг: {average}");
 
-        }
+         }
     }
 }
